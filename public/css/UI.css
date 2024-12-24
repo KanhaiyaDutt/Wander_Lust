@@ -1,0 +1,79 @@
+.cont{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#filters{
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  white-space: nowrap;
+
+  margin-left:0  ;
+}
+
+
+#filters a{
+    text-decoration: none;
+    color:black;
+}
+
+.filter{
+  text-align: center;
+  margin-right: 2rem;
+  margin-top: 1.5rem;
+  opacity: 0.7;
+}
+  .filter:hover{
+    opacity: 1;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 480px) {
+    .filter{
+  opacity: 1;
+}
+  }
+  #filters p {
+    font-size: 0.9rem;
+  }
+
+.c-btn{
+    background-color: #fff !important;
+    border: none !important;
+    height: 6rem !important;
+    width: 7rem !important;
+
+}
+
+.tax-info {
+    display: none;
+}
+
+.tax-toggle{
+    /* border: 1px solid black; */
+    height: 3rem;
+    width: auto;
+    text-align: center;
+    font-size: 1rem;
+    /* padding-top: 0.3rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: flex-start;
+    align-items: center;
+    /* padding-right: 1.5rem; */
+    margin-left: 1rem;
+    /* padding-left: 0.7rem; */
+}
+
+.tax-toggle div  {
+    padding: 0rem 5.5rem 0rem 0rem !important;
+    align-self: center !important;
+    justify-self: center !important;
+    font-size: 2rem !important;
+
+}
+.tax-toggle label  {
+    align-self: center;
+
+}

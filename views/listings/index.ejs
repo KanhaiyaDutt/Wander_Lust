@@ -1,0 +1,170 @@
+<%  layout("/layouts/boilerIndex") -%>
+<%if(!countryExists){%>
+  <div class="alert alert-danger alert-dismissible offset-1 cols-6 fade show" role="alert">
+      <%= notExists %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<body>
+    <!-- <h3>All Listings</h3> -->
+<div class="cont ">
+    <div class=" " id="filters">
+      <form method="get" action="/listings">
+      <button name="category" class="btn c-btn btn-light" value="Trending">
+        <div  class="filter">
+        <div><i class="fa-solid fa-fire fa-bounce fa-2xl"></i></div>
+        <p>Trending</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Castles">
+ <div class="filter">
+        <div><i class="fa-brands fa-fort-awesome fa-2xl"></i></div>
+        <p>Castles</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Mountains">
+ <div class="filter">
+        <div><i class="fa-solid fa-mountain fa-2xl"></i></div>
+        <p>Mountains</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Iconic Cities">
+<div class="filter">
+        <div><i class="fa-solid fa-mountain-city fa-2xl"></i></div>
+        <p>Iconic Cities</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Rooms">
+ <div class="filter">
+        <div><i class="fa-solid fa-bed fa-2xl"></i></div>
+        <p>Rooms</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Arctic Pool">
+  <div class="filter">
+        <div><i class="fa-solid fa-snowflake fa-2xl"></i></div>
+        <p>Arctic pool</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Farm">
+<div class="filter">
+        <div><i class="fa-solid fa-cow fa-2xl"></i></div>
+        <p>Farm</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Camping">
+<div class="filter">
+        <div><i class="fa-solid fa-campground fa-2xl"></i></div>
+        <p>Camping</p>
+      </div>
+      </button>
+      <button name='category' class="btn c-btn btn-light"  value="Pools">
+<div class="filter">
+        <div><i class="fa-solid fa-person-swimming fa-2xl"></i></div>
+        <p>Pools</p>
+      </div>
+      </button>
+    </form>
+  </div>
+
+  <div class="tax-toggle ">
+    <div class="form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+    </div>
+    <label for="flexSwitchCheckDefault">Display Taxes</label for="">
+  </div>
+
+</div> 
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    
+
+
+
+<% if(countListing.length ==0 || newListings.length == 0){ %>
+            
+  <% if(newListings.length !=0){ %>
+    <%for ( let listing of newListings){%>
+      
+      <a href="/listings/<%= listing._id %>/show" class="listing-link">
+        <div class="card card-listing col">
+           
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing_Image" style="height: 20rem;">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+               <b> <%= listing.title %> </b><br>
+                &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+                <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+            </p>
+            </div>
+        
+          </div>
+        </a>
+    <%} %>
+
+    <% }else {%>
+      <%for ( let listing of countListing){%>
+      
+        <a href="/listings/<%= listing._id %>/show" class="listing-link">
+          <div class="card card-listing col">
+             
+              <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing_Image" style="height: 20rem;">
+              <div class="card-img-overlay"></div>
+              <div class="card-body">
+                <p class="card-text">
+                 <b> <%= listing.title %> </b><br>
+                  &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+                  <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+              </p>
+              </div>
+          
+            </div>
+          </a>
+      <%} %>
+
+      <% } %>
+
+      
+<% }%>
+<% if(countListing.length ==0 && newListings.length == 0){ %>
+  <%for ( let listing of allListings){%>
+      
+    <a href="/listings/<%= listing._id %>/show" class="listing-link">
+      <div class="card card-listing col">
+         
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing_Image" style="height: 20rem;">
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <p class="card-text">
+             <b> <%= listing.title %> </b><br>
+              &#8377; <%= listing.price.toLocaleString("en-IN") %> /night
+              <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+          </p>
+          </div>
+      
+        </div>
+      </a>
+  <%} %>
+<% } %>
+
+
+
+    </div>
+
+
+
+</body>
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display !="inline"){
+        info.style.display = "inline"
+      }else{
+      info.style.display="none";
+      }
+    }
+  })
+</script>
